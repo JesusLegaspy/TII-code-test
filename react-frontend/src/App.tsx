@@ -46,24 +46,24 @@ const App: FC<any> = () => {
                 </tr>
               </thead>
               <tbody>
-                  { memberships.filter(membership => !search
-                    || membership.user?.name.toLowerCase().includes(search.toLowerCase())
-                    || membership.user?.email.includes(search))
-                    .map(membership => (
-                      <tr key={membership.id}>
-                        <td>{membership.user?.name}</td>
-                        <td>{membership.user?.email}</td>
-                        <td>
-                          <Button color='primary' outline onClick={e => loadDetailsModal(membership)}>Details</Button>
-                        </td>
-                      </tr>
-                    ))
+                {memberships.filter(membership => !search
+                  || membership.user?.name.toLowerCase().includes(search.toLowerCase())
+                  || membership.user?.email.toLowerCase().includes(search.toLowerCase()))
+                  .map(membership => (
+                    <tr key={membership.id}>
+                      <td>{membership.user?.name}</td>
+                      <td>{membership.user?.email}</td>
+                      <td>
+                        <Button color='primary' outline onClick={e => loadDetailsModal(membership)}>Details</Button>
+                      </td>
+                    </tr>
+                  ))
                 }
               </tbody>
             </table>
           )
         }
-        { activeMembership &&
+        {activeMembership &&
           (
             <Modal isOpen={!!activeMembership}>
               <ModalHeader toggle={e => closeDetailsModal}>User Details</ModalHeader>
